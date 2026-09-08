@@ -1,0 +1,388 @@
+using UnityEngine;
+
+public class IGB283Vector3
+{
+    // Listed below are all the places in this file that are missing functional code.
+    // You can change the X on each item to a V when you complete them to help you keep track.
+    // 
+    // Note: you are not required to complete this file for your assignment. Just fill in the
+    //       sections that you need. Recommended items are marked with an asterisk (*)
+    // 
+    // Code Checklist:
+    // - Static Methods:
+    //     X Normalize*
+    //     X Dot*
+    //     X Cross*
+    //     X Distance*
+    //     X Lerp
+    //     X Scale
+    //     X Min
+    //     X Max
+    //     X Angle
+    //     X ConvertFrom**
+    //     X ConvertTo**
+    //
+    // - Fields:
+    //     X SqrMagnitude
+    //     X Magnitude*
+    //  
+    // - Operators*:
+    //     X *
+    //     X /
+    //     X +
+    //     X -
+    //     X -
+    //
+    // - Methods:
+    //     X Equals*
+
+
+    #region Fields and Indexing
+    public float x = 0f;
+    public float y = 0f;
+    public float z = 0f;
+
+    private static readonly System.IndexOutOfRangeException badIndexException = new System.IndexOutOfRangeException("The index must be between 0 and 2.");
+
+    // Support value indexing
+    public float this[int index]
+    {
+        get
+        {
+            switch (index)
+            {
+                case 0: return x;
+                case 1: return y;
+                case 2: return z;
+                default:
+                    throw badIndexException;
+            }
+        }
+        set
+        {
+            switch (index)
+            {
+                case 0:
+                    {
+                        x = value;
+                        break;
+                    }
+                case 1:
+                    {
+                        y = value;
+                        break;
+                    }
+                case 2:
+                    {
+                        z = value;
+                        break;
+                    }
+                default:
+                    throw badIndexException;
+            }
+        }
+    }
+    #endregion
+
+
+
+    #region Constructors
+    // Parameterless constructor
+    public IGB283Vector3()
+    {
+        x = 0f;
+        y = 0f;
+        z = 0f;
+    }
+
+    // XY constructor
+    public IGB283Vector3(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = 0f;
+    }
+
+    // Full constructor
+    public IGB283Vector3(float x, float y, float z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    #endregion
+
+
+
+    #region Static Fields
+    public static readonly IGB283Vector3 Zero = new IGB283Vector3(0f, 0f, 0f);
+    public static readonly IGB283Vector3 One = new IGB283Vector3(1f, 1f, 1f);
+
+    public static readonly IGB283Vector3 NegativeInfinity = new IGB283Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity);
+    public static readonly IGB283Vector3 PositiveInfinity = new IGB283Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+
+    public static readonly IGB283Vector3 Right = new IGB283Vector3(1f, 0f, 0f);
+    public static readonly IGB283Vector3 Up = new IGB283Vector3(0f, 1f, 0f);
+    public static readonly IGB283Vector3 Forward = new IGB283Vector3(0f, 0f, 1f);
+
+    public static readonly IGB283Vector3 Left = new IGB283Vector3(-1f, 0f, 0f);
+    public static readonly IGB283Vector3 Down = new IGB283Vector3(0f, -1f, 0f);
+    public static readonly IGB283Vector3 Back = new IGB283Vector3(0f, 0f, -1f);
+    #endregion
+
+
+
+    // TODO - Normalize, Dot, Cross, Distance, Lerp, Scale, Min, Max, Angle, ConvertFrom, ConvertTo
+    #region Static Methods
+
+    // The normalized vector in the same direction with length 1
+    public static IGB283Vector3 Normalize(IGB283Vector3 value)
+    {
+        // -- Your Code here --
+        // Hint: divide by magnitude, if non-zero.
+        throw new System.NotImplementedException();
+    }
+
+    // The dot product of two vectors
+    public static float Dot(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        throw new System.NotImplementedException();
+    }
+
+    // The cross product of two vectors
+    public static IGB283Vector3 Cross(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        throw new System.NotImplementedException();
+    }
+
+    // The distance between two points
+    public static float Distance(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        // Hint: find the magnitude of the vector going from a to b
+        throw new System.NotImplementedException();
+    }
+
+    // Linearly interpolate between two vectors by a given percentage
+    public static IGB283Vector3 Lerp(IGB283Vector3 a, IGB283Vector3 b, float t)
+    {
+        // -- Your Code here --
+        // Hint: scale the vector going from a to b by t, and add it to a
+        throw new System.NotImplementedException();
+    }
+
+    // Perform element-wise multiplication of two vectors
+    public static IGB283Vector3 Scale(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        throw new System.NotImplementedException();
+    }
+
+    // Create a new vector with the smallest elements from two vectors
+    public static IGB283Vector3 Min(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        throw new System.NotImplementedException();
+    }
+
+    // Create a new vector with the largest elements from two vectors
+    public static IGB283Vector3 Max(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        throw new System.NotImplementedException();
+    }
+
+    // The angle betwen two vectors
+    public static float Angle(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        // Hint: use the alternative dot product formula to isolate the angle
+        throw new System.NotImplementedException();
+    }
+
+    // Convert from a Vector3 to IGB283Vector3
+    public static IGB283Vector3 ConvertFrom(Vector3 v)
+    {
+        IGB283Vector3 converted = new IGB283Vector3(v.x, v.y, v.z);
+        return converted;
+    }
+
+    // Convert from a Vector3 to IGB283Vector3
+    public static Vector3 ConvertTo(IGB283Vector3 v)
+    {
+        Vector3 converted = new Vector3(v.x, v.y, v.z);
+        return converted;
+    }
+
+    // Convert an array of Vector3 to IGB283Vector3
+    public static IGB283Vector3[] ConvertFrom(Vector3[] vectors)
+    {
+        IGB283Vector3[] converted = new IGB283Vector3[vectors.Length];
+
+        for (int i = 0; i < converted.Length; ++i)
+            converted[i] = ConvertFrom(vectors[i]);
+
+        return converted;
+    }
+
+    // Convert an array of Vector3 to IGB283Vector3
+    public static Vector3[] ConvertTo(IGB283Vector3[] vectors)
+    {
+        Vector3[] converted = new Vector3[vectors.Length];
+
+        for (int i = 0; i < converted.Length; ++i)
+            converted[i] = ConvertTo(vectors[i]);
+
+        return converted;
+    }
+    #endregion
+
+
+
+    // TODO - SqrMagnitude, Magnitude
+    #region Fields
+
+    // The squared length or distance represented by the vector
+    public float SqrMagnitude
+    {
+        get
+        {
+            // -- Your Code here --
+            // Hint: Pythagoras Theorem or self dot product
+            throw new System.Exception();
+        }
+    }
+
+    // The length or distance represented by the vector
+    public float Magnitude
+    {
+        get
+        {
+            // -- Your Code here --
+            // Hint: use the square magnitude to reduce code repetition
+            throw new System.NotImplementedException();
+        }
+    }
+
+    // The normalized vector in the same direction with length 1
+    public IGB283Vector3 Normalized
+    {
+        get { return Normalize(this); }
+    }
+    #endregion
+
+
+
+    // TODO - *, /, +, -, -
+    #region Operators
+
+    // Add two vectors
+    public static IGB283Vector3 operator +(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        // Hint: add the corresponding elements
+        throw new System.NotImplementedException();
+    }
+
+    // Subtract vector b from a
+    public static IGB283Vector3 operator -(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        // -- Your Code here --
+        // Hint: subtract the corresponding elements
+        throw new System.NotImplementedException();
+    }
+
+    // Negate the vector
+    public static IGB283Vector3 operator -(IGB283Vector3 a)
+    {
+        // -- Your Code here --
+        // Hint: negate each element
+        throw new System.NotImplementedException();
+    }
+
+    // Multiply a scalar and a vector
+    public static IGB283Vector3 operator *(float scalar, IGB283Vector3 v)
+    {
+        // -- Your Code here --
+        // Hint: multiply all elements by the scalar
+        throw new System.NotImplementedException();
+    }
+
+    // Multiply a vector and a scalar
+    public static IGB283Vector3 operator *(IGB283Vector3 v, float scalar)
+    {
+        return scalar * v;
+    }
+
+    // Divide a vector by a scalar
+    public static IGB283Vector3 operator /(IGB283Vector3 v, float scalar)
+    {
+        // -- Your Code here --
+        // Hint: divide all elements by the scalar
+        throw new System.NotImplementedException();
+    }
+
+    // Check vector equality
+    public static bool operator ==(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        if (a is null)
+            return b is null;
+        else
+            return a.Equals(b);
+    }
+
+    // Check vector inequality
+    public static bool operator !=(IGB283Vector3 a, IGB283Vector3 b)
+    {
+        return !(a == b);
+    }
+    #endregion
+
+
+
+    // TODO - Equals
+    #region Methods
+
+    // Test the equality between this vector and a given other vector
+    public bool Equals(IGB283Vector3 other)
+    {
+        // -- Your Code here --
+        // Hint: check if other is null before comparing the vector elements.
+        //       Do NOT use == between this and other here directly, as it will cause a stack overflow
+        throw new System.NotImplementedException();
+    }
+
+    // Test the equality between this vector and a given object
+    public override bool Equals(object obj)
+    {
+        // Check if the object can be casted to IGB283Vector3
+        IGB283Vector3 other = obj as IGB283Vector3;
+        if (other is null)
+            return false;
+
+        return Equals(other);
+    }
+
+    // Generate a hash code based on the current values
+    public override int GetHashCode()
+    {
+        return System.HashCode.Combine(x, y, z);
+    }
+
+    public override string ToString()
+    {
+        return $"({x:N3}, {y:N3}, {z:N3})";
+    }
+
+    // Normalize this vector
+    public void Normalize()
+    {
+        IGB283Vector3 normalized = Normalized;
+        x = normalized.x;
+        y = normalized.y;
+        z = normalized.z;
+    }
+    #endregion
+}
