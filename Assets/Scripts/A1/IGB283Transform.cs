@@ -1,18 +1,22 @@
 using UnityEngine;
-
-public class IGB283Transform : MonoBehaviour
+public class IGB283Transform
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public IGB283Vector3 position;
+    public IGB283Vector3 rotation;
+    public IGB283Vector3 scale;
+
+    public IGB283Transform()
     {
-        
+        position = IGB283Vector3.Zero;
+        rotation = IGB283Vector3.Zero;
+        scale = IGB283Vector3.One;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Rotate(float x, float y, float z)
     {
-        
+        rotation.x += x;
+        rotation.y += y;
+        rotation.z += z;
     }
-
-    // Typical transformation functions include translation, rotation, and scaling using matrices.
 }
+

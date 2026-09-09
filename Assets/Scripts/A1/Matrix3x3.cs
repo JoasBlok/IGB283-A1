@@ -168,9 +168,9 @@ public class Matrix3x3
     }
 
     // Multiply an unmodified Vector3 by this matrix
-    public Vector3 MultiplyVector3(Vector3 v3)
+    public IGB283Vector3 MultiplyVector3(IGB283Vector3 v3)
     {
-        Vector3 v = new Vector3(
+        IGB283Vector3 v = new IGB283Vector3(
             m[0][0] * v3[0] + m[0][1] * v3[1] + m[0][2] * v3[2],
             m[1][0] * v3[0] + m[1][1] * v3[1] + m[1][2] * v3[2],
             m[2][0] * v3[0] + m[2][1] * v3[1] + m[2][2] * v3[2]
@@ -179,7 +179,7 @@ public class Matrix3x3
     }
 
     // Transform a point by this matrix
-    public Vector3 MultiplyPoint(Vector3 p)
+    public IGB283Vector3 MultiplyPoint(IGB283Vector3 p)
     {
         p.z = 1.0f;
         return MultiplyVector3(p);
@@ -197,7 +197,7 @@ public class Matrix3x3
     }
 
     // Transform a direction by this matrix
-    public Vector3 MultiplyVector(Vector3 v)
+    public IGB283Vector3 MultiplyVector(IGB283Vector3 v)
     {
         v.z = 0;
         return MultiplyVector3(v);
