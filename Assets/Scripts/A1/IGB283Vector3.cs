@@ -20,8 +20,8 @@ public class IGB283Vector3
     //     X Min
     //     X Max
     //     X Angle
-    //     ConvertFrom**
-    //     ConvertTo**
+    //     V ConvertFrom**
+    //     V ConvertTo**
     //
     // - Fields:
     //     X SqrMagnitude
@@ -35,7 +35,7 @@ public class IGB283Vector3
     //     X -
     //
     // - Methods:
-    //     Equals*
+    //     V Equals*
 
 
     #region Fields and Indexing
@@ -284,17 +284,21 @@ public class IGB283Vector3
     // Add two vectors
     public static IGB283Vector3 operator +(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        // Hint: add the corresponding elements
-        throw new System.NotImplementedException();
+        float x = a.x + b.x; 
+        float y = a.y + b.y;
+        float z = a.z + b.z;
+
+        return new IGB283Vector3(x, y, z);
     }
 
     // Subtract vector b from a
     public static IGB283Vector3 operator -(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        // Hint: subtract the corresponding elements
-        throw new System.NotImplementedException();
+        float x = a.x - b.x;
+        float y = a.y - b.y;
+        float z = a.z - b.z;
+
+        return new IGB283Vector3(x, y, z);
     }
 
     // Negate the vector

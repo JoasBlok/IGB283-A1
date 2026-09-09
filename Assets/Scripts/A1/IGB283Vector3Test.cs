@@ -69,7 +69,9 @@ public class IGB283Vector3Test : MonoBehaviour
             testsPassed++;
         }
         else
+        {
             message += "failed";
+        }
 
         testsCount++;
         message += $"</b>\nExpected value: {expectation}\nGiven value: {result}";
