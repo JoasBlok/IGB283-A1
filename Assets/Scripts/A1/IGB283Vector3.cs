@@ -334,7 +334,10 @@ public class IGB283Vector3
     // Divide a vector by a scalar
     public static IGB283Vector3 operator /(IGB283Vector3 v, float scalar)
     {
-        return v / scalar;
+        float x = v.x / scalar;
+        float y = v.y / scalar;
+        float z = v.z / scalar;
+        return new IGB283Vector3(x, y, z);
     }
 
     // Check vector equality
@@ -359,24 +362,15 @@ public class IGB283Vector3
 
     // Test the equality between this vector and a given other vector
     public bool Equals(IGB283Vector3 other)
-    {    
-        if(other is null) { 
+    {
+        if (other is null)
             return false;
-        }
 
-        for (int i = 0; i < vectorOrder; i++)
-        {
-            for (int j = 0; j < vectorOrder; j++)
-            {
-                if (this[i] != other[j])
-                {
-                    return false;
-                }
-            }
-        }
-
-        return Equals(other);
+        return x == other.x &&
+               y == other.y &&
+               z == other.z;
     }
+
 
     // Test the equality between this vector and a given object
     public override bool Equals(object obj)
