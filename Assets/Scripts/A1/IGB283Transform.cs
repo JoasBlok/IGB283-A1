@@ -18,5 +18,11 @@ public class IGB283Transform
         rotation.y += y;
         rotation.z += z;
     }
+
+    public Matrix3x3 GetRotationMatrix()
+    {
+        return Matrix3x3.RotationZ(rotation.z);
+    }
+
 }
 

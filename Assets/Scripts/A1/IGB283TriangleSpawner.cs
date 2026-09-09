@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class IGB283TriangleSpawner : MonoBehaviour
 {
@@ -34,6 +32,30 @@ public class IGB283TriangleSpawner : MonoBehaviour
         // Clear all vertex and index data from the mesh
         mesh.Clear();
 
+        Matrix3x3 rotation = Matrix3x3.RotationZ(90);
+        IGB283Vector3 result =
+            rotation.MultiplyVector3(new IGB283Vector3(0, 8, 0));
+
+        Debug.Log(result);
+
+
+
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    float angle = i * 90f;
+
+        //    Matrix3x3 rotation = Matrix3x3.RotationZ(angle);
+
+        //    for (int j = 0; j < diamondVertices.Length; j++)
+        //    {
+        //        IGB283Vector3 rotated =
+        //            rotation.MultiplyVector3(diamondVertices[j]);
+
+        //        // Add rotated to your mesh vertices
+        //    }
+        //}
+
+
         //IGB283Vector3[] vertices = IGB283Triangle.MakeTriangle(v1, v2, v3);
         mesh.vertices = IGB283Vector3.ConvertTo(diamondVertices);
 
@@ -50,6 +72,9 @@ public class IGB283TriangleSpawner : MonoBehaviour
             0, 3, 4,  // upper-right
             0, 4, 5   // top-right`
         };
+
+
+
 
     }
 
@@ -74,48 +99,10 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
     //IGB283Vector3[] SpawnTriangle(int i)
     //{
-
-
-    //    IGB283Vector3 v1 = 
+        
 
 
     //    return trianglePrefab.GetComponent<IGB283Triangle>().MakeTriangle(v1, v2, v3);
-
     //}
-
-    private Matrix3x3 Rotate(float angle)
-    {
-
-        // Calculate sin and cos of the angle once
-        float sin = Mathf.Sin(angle);
-        float cos = Mathf.Cos(angle);
-
-        // Create a new matrix for rotation
-        Matrix3x3 r = new Matrix3x3(
-        new IGB283Vector3(cos, -sin, 0),
-        new IGB283Vector3(sin, cos, 0),
-        new IGB283Vector3(0, 0, 1));
-
-        return r;
-    }
-
-    private void rotateTriangle()
-    {
-        // Get the current mesh vertices
-        
-        IGB283Vector3[] vertices = IGB283Vector3.ConvertFrom(mesh.vertices);
-        Matrix3x3 r = Rotate(angle * Time.deltaTime);
-
-        // Rotate every vertex in the mesh
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = r.MultiplyPoint(diamondVertices[i]);
-        }
-
-        // Update the mesh vertices
-        mesh.vertices = vertices;
-        // Recalculate the mesh bounds
-        mesh.RecalculateBounds();
-    }
 
 }
