@@ -47,7 +47,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
             0, 1, 2,  // bottom-right
             0, 2, 3,  // lower-right
             0, 3, 4,  // upper-right
-            0, 4, 5   // top-right
+            0, 4, 5   // top-right`
         };
 
     }

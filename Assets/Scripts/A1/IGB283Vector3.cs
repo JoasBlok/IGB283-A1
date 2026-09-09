@@ -28,11 +28,11 @@ public class IGB283Vector3
     //     X Magnitude*
     //  
     // - Operators*:
-    //     X *
-    //     X /
-    //     X +
-    //     X -
-    //     X -
+    //     V *
+    //     V /
+    //     V +
+    //     V -
+    //     V -
     //
     // - Methods:
     //     V Equals*
@@ -304,31 +304,37 @@ public class IGB283Vector3
     // Negate the vector
     public static IGB283Vector3 operator -(IGB283Vector3 a)
     {
-        // -- Your Code here --
-        // Hint: negate each element
-        throw new System.NotImplementedException();
+        float x = a.x * -1;
+        float y = a.y * -1;
+        float z = a.z * -1;
+
+        return new IGB283Vector3(x, y,z);
     }
 
     // Multiply a scalar and a vector
     public static IGB283Vector3 operator *(float scalar, IGB283Vector3 v)
     {
-        // -- Your Code here --
-        // Hint: multiply all elements by the scalar
-        throw new System.NotImplementedException();
+        float x = scalar * v.x;
+        float y = scalar * v.y;
+        float z = scalar * v.z;
+
+        return new IGB283Vector3(x,y,z);
     }
 
     // Multiply a vector and a scalar
     public static IGB283Vector3 operator *(IGB283Vector3 v, float scalar)
     {
-        return scalar * v;
+        float x = v.x * scalar;
+        float y = v.y * scalar;
+        float z = v.z * scalar;
+
+        return new IGB283Vector3(x, y, z);
     }
 
     // Divide a vector by a scalar
     public static IGB283Vector3 operator /(IGB283Vector3 v, float scalar)
     {
-        // -- Your Code here --
-        // Hint: divide all elements by the scalar
-        throw new System.NotImplementedException();
+        return v / scalar;
     }
 
     // Check vector equality
