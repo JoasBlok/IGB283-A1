@@ -1,4 +1,3 @@
-using UnityEngine;
 public class IGB283Transform
 {
     public IGB283Vector3 position;
@@ -7,9 +6,14 @@ public class IGB283Transform
 
     public IGB283Transform()
     {
-        position = IGB283Vector3.Zero;
-        rotation = IGB283Vector3.Zero;
-        scale = IGB283Vector3.One;
+        position = new IGB283Vector3(0f, 0f, 0f);
+        rotation = new IGB283Vector3(0f, 0f, 0f);
+        scale = new IGB283Vector3(1f, 1f, 1f);
+    }
+
+    public void Translate(IGB283Vector3 translation)
+    {
+        position += translation;
     }
 
     public void Rotate(float x, float y, float z)
@@ -19,10 +23,13 @@ public class IGB283Transform
         rotation.z += z;
     }
 
+    public void Scale(IGB283Vector3 scaling)
+    {
+        scale = IGB283Vector3.Scale(scale, scaling);
+    }
+
     public Matrix3x3 GetRotationMatrix()
     {
         return Matrix3x3.RotationZ(rotation.z);
     }
-
 }
-

@@ -8,89 +8,130 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
     private Mesh mesh;
 
-    // The 9 vertices that make up one diamond
+    private IGB283Transform objectTransform;
+
+    private IGB283Vector3 startPoint = new IGB283Vector3(-5, 0, 0);
+    private IGB283Vector3 endPoint = new IGB283Vector3(5, 0, 0);
+
+    [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private float rotationSpeed = 90f;
+
+    private bool movingRight = true;
+
     IGB283Vector3[] diamondVertices =
     {
-        new IGB283Vector3(0, 4, 0),   // 0 centre
-        new IGB283Vector3(0, 0, 0),    // 1 bottom
-        new IGB283Vector3(1, 2, 0),    // 2 lower-right
-        new IGB283Vector3(2, 4, 0),    // 3 right
-        new IGB283Vector3(1, 6, 0),    // 4 upper-right
-        new IGB283Vector3(0, 8, 0),    // 5 top
-        new IGB283Vector3(-1, 6, 0),   // 6 upper-left
-        new IGB283Vector3(-2, 4, 0),   // 7 left
-        new IGB283Vector3(-1, 2, 0)    // 8 lower-left
+        new IGB283Vector3(0, 4, 0),
+        new IGB283Vector3(0, 0, 0),
+        new IGB283Vector3(1, 2, 0),
+        new IGB283Vector3(2, 4, 0),
+        new IGB283Vector3(1, 6, 0),
+        new IGB283Vector3(0, 8, 0),
+        new IGB283Vector3(-1, 6, 0),
+        new IGB283Vector3(-2, 4, 0),
+        new IGB283Vector3(-1, 2, 0)
     };
 
     void Start()
     {
-        // Create the mesh
         mesh = gameObject.AddComponent<MeshFilter>().mesh;
         gameObject.AddComponent<MeshRenderer>().material = material;
 
         mesh.Clear();
+        mesh.RecalculateNormals();
 
-        // Lists to hold the entire star
+        objectTransform = new IGB283Transform();
+
+        //CreateObject();
+    }
+
+    void Update()
+    {
+        AnimateObject();
+        CreateObject();
+    }
+
+    void AnimateObject()
+    {
+        // Rotate using IGB283Transform
+        objectTransform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+
+        // Move between the two points using our own Transform
+        float direction;
+
+        if (movingRight)
+        {
+            direction = 1f;
+        }
+        else
+        {
+            direction = -1f;
+        }
+
+        objectTransform.Translate(
+            new IGB283Vector3(
+                direction * movementSpeed * Time.deltaTime,
+                0,
+                0
+            )
+        );
+
+        // Check whether we reached the endpoints
+        if (objectTransform.position.x >= endPoint.x)
+        {
+            objectTransform.position.x = endPoint.x;
+            movingRight = false;
+        }
+
+        if (objectTransform.position.x <= startPoint.x)
+        {
+            objectTransform.position.x = startPoint.x;
+            movingRight = true;
+        }
+    }
+
+    void CreateObject()
+    {
         List<IGB283Vector3> vertices = new List<IGB283Vector3>();
         List<int> triangles = new List<int>();
+
+        // Get rotation from our own Transform
+        Matrix3x3 rotationMatrix =
+            objectTransform.GetRotationMatrix();
 
         // Create the four diamonds
         for (int i = 0; i < 4; i++)
         {
             float angle = i * 90f;
 
-            Matrix3x3 rotation = Matrix3x3.RotationZ(angle);
+            Matrix3x3 diamondRotation =
+                Matrix3x3.RotationZ(angle);
 
-            // Remember where this diamond's vertices start
             int vertexOffset = vertices.Count;
 
-            // Rotate every vertex of the diamond
             for (int j = 0; j < diamondVertices.Length; j++)
             {
-                IGB283Vector3 rotated =
-                    rotation.MultiplyVector3(diamondVertices[j]);
+                // Rotate the diamond
+                IGB283Vector3 vertex =
+                    diamondRotation.MultiplyVector3(
+                        diamondVertices[j]
+                    );
 
-                vertices.Add(rotated);
+                // Rotate the entire object
+                vertex =
+                    rotationMatrix.MultiplyVector3(vertex);
+
+                // Translate the entire object
+                vertex += objectTransform.position;
+
+                vertices.Add(vertex);
             }
 
-            // Add the 8 triangles for this diamond
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 5);
-            triangles.Add(vertexOffset + 6);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 6);
-            triangles.Add(vertexOffset + 7);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 7);
-            triangles.Add(vertexOffset + 8);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 8);
-            triangles.Add(vertexOffset + 1);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 1);
-            triangles.Add(vertexOffset + 2);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 2);
-            triangles.Add(vertexOffset + 3);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 3);
-            triangles.Add(vertexOffset + 4);
-
-            triangles.Add(vertexOffset + 0);
-            triangles.Add(vertexOffset + 4);
-            triangles.Add(vertexOffset + 5);
+            AddDiamondTriangles(triangles, vertexOffset);
         }
 
-        // Convert our custom vertices to Unity vertices
-        mesh.vertices = IGB283Vector3.ConvertTo(vertices.ToArray());
+        mesh.vertices =
+            IGB283Vector3.ConvertTo(vertices.ToArray());
 
-        // Give every vertex a colour
         Color[] colors = new Color[vertices.Count];
 
         for (int i = 0; i < colors.Length; i++)
@@ -99,11 +140,43 @@ public class IGB283TriangleSpawner : MonoBehaviour
         }
 
         mesh.colors = colors;
-
-        // Set triangle indices
         mesh.triangles = triangles.ToArray();
 
-        // Optional: recalculate the mesh bounds
         mesh.RecalculateBounds();
+    }
+
+    void AddDiamondTriangles(List<int> triangles, int offset)
+    {
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 5);
+        triangles.Add(offset + 6);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 6);
+        triangles.Add(offset + 7);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 7);
+        triangles.Add(offset + 8);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 8);
+        triangles.Add(offset + 1);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 1);
+        triangles.Add(offset + 2);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 2);
+        triangles.Add(offset + 3);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 3);
+        triangles.Add(offset + 4);
+
+        triangles.Add(offset + 0);
+        triangles.Add(offset + 4);
+        triangles.Add(offset + 5);
     }
 }
