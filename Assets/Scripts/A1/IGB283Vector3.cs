@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class IGB283Vector3
@@ -19,8 +20,8 @@ public class IGB283Vector3
     //     X Min
     //     X Max
     //     X Angle
-    //     X ConvertFrom**
-    //     X ConvertTo**
+    //     ConvertFrom**
+    //     ConvertTo**
     //
     // - Fields:
     //     X SqrMagnitude
@@ -34,7 +35,7 @@ public class IGB283Vector3
     //     X -
     //
     // - Methods:
-    //     X Equals*
+    //     Equals*
 
 
     #region Fields and Indexing
@@ -128,6 +129,8 @@ public class IGB283Vector3
     public static readonly IGB283Vector3 Left = new IGB283Vector3(-1f, 0f, 0f);
     public static readonly IGB283Vector3 Down = new IGB283Vector3(0f, -1f, 0f);
     public static readonly IGB283Vector3 Back = new IGB283Vector3(0f, 0f, -1f);
+
+    private const int vectorOrder = 3;
     #endregion
 
 
@@ -347,11 +350,23 @@ public class IGB283Vector3
 
     // Test the equality between this vector and a given other vector
     public bool Equals(IGB283Vector3 other)
-    {
-        // -- Your Code here --
-        // Hint: check if other is null before comparing the vector elements.
-        //       Do NOT use == between this and other here directly, as it will cause a stack overflow
-        throw new System.NotImplementedException();
+    {    
+        if(other is null) { 
+            return false;
+        }
+
+        for (int i = 0; i < vectorOrder; i++)
+        {
+            for (int j = 0; j < vectorOrder; j++)
+            {
+                if (this[i] != other[j])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return Equals(other);
     }
 
     // Test the equality between this vector and a given object

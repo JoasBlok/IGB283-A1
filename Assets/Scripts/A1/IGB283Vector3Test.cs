@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class IGB283Vector3Test : MonoBehaviour
@@ -10,6 +11,7 @@ public class IGB283Vector3Test : MonoBehaviour
     {
         IGB283Vector3 v1 = IGB283Vector3.One;
         IGB283Vector3 v2 = new IGB283Vector3(3f, 4f, 5f);
+        
         float c1 = 2f;
 
         Debug.Log($"v1 = {v1}");
