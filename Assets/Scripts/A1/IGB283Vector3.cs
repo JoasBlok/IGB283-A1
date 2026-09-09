@@ -212,7 +212,7 @@ public class IGB283Vector3
         return converted;
     }
 
-    // Convert from a Vector3 to IGB283Vector3
+    // Convert from a IGB283Vector3 to Vector3
     public static Vector3 ConvertTo(IGB283Vector3 v)
     {
         Vector3 converted = new Vector3(v.x, v.y, v.z);
@@ -230,7 +230,7 @@ public class IGB283Vector3
         return converted;
     }
 
-    // Convert an array of Vector3 to IGB283Vector3
+    // Convert an array of IGB283Vector3 to Vector3
     public static Vector3[] ConvertTo(IGB283Vector3[] vectors)
     {
         Vector3[] converted = new Vector3[vectors.Length];
@@ -345,7 +345,6 @@ public class IGB283Vector3
 
 
 
-    // TODO - Equals
     #region Methods
 
     // Test the equality between this vector and a given other vector
