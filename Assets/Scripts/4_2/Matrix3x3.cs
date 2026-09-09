@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+namespace IGB283_4_2 {
 public class Matrix3x3
 {
     private const int matrixOrder = 3;
@@ -121,7 +122,7 @@ public class Matrix3x3
             {
                 transpose.SetColumn(i, this.GetRow(i));
             }
-        return transpose;
+            return transpose;
         }
     }
 
@@ -303,4 +304,5 @@ public class Matrix3x3
         // If reaching here, all elements are equal
         return true;
     }
+}
 }

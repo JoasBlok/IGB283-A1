@@ -2,7 +2,6 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.InputManagerEntry;
 
 public class CircleSpawner : MonoBehaviour
 {
@@ -48,11 +47,6 @@ public class CircleSpawner : MonoBehaviour
                 circleInstance.MinY = minY;
                 circleInstance.MaxY = maxY;
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
         }
     }
 }

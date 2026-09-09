@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace IGB283_5_1 {
+namespace IGB283_5_2
+{ 
 public class Matrix3x3
 {
     private const int matrixOrder = 3;
