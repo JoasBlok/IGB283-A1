@@ -11,9 +11,9 @@ public class IGB283Vector3
     // 
     // Code Checklist:
     // - Static Methods:
-    //     X Normalize*
-    //     X Dot*
-    //     X Cross*
+    //     V Normalize*
+    //     V Dot*
+    //     V Cross*
     //     X Distance*
     //     X Lerp
     //     X Scale
@@ -24,8 +24,8 @@ public class IGB283Vector3
     //     V ConvertTo**
     //
     // - Fields:
-    //     X SqrMagnitude
-    //     X Magnitude*
+    //     V SqrMagnitude
+    //     V Magnitude*
     //  
     // - Operators*:
     //     V *
@@ -142,30 +142,43 @@ public class IGB283Vector3
     public static IGB283Vector3 Normalize(IGB283Vector3 value)
     {
         // -- Your Code here --
-        // Hint: divide by magnitude, if non-zero.
-        throw new System.NotImplementedException();
+        float x = value.x / value.Magnitude;
+        float y = value.y / value.Magnitude;
+        float z = value.z / value.Magnitude;
+
+        return new IGB283Vector3(x, y, z);
+        
     }
 
     // The dot product of two vectors
     public static float Dot(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        throw new System.NotImplementedException();
+        float dot = (a.x * b.x + a.y * b.y + a.z * b.z);
+        return dot;
     }
 
     // The cross product of two vectors
     public static IGB283Vector3 Cross(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        throw new System.NotImplementedException();
+        float x = (a.y * b.z - a.z * b.y);
+        float y = (a.z * b.x - a.x * b.z);
+        float z = (a.x * b.y -  a.y * b.x);
+
+        return new IGB283Vector3(x, y, z);
+
     }
 
     // The distance between two points
     public static float Distance(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        // Hint: find the magnitude of the vector going from a to b
-        throw new System.NotImplementedException();
+        float x = (a.x - b.x);
+        float y = (a.y - b.y);
+        float z = (a.z - b.z);
+
+        float sqr = (x * x + y * y + z * z);
+
+        float d = Mathf.Sqrt(sqr);
+        return d;  
     }
 
     // Linearly interpolate between two vectors by a given percentage
@@ -252,9 +265,8 @@ public class IGB283Vector3
     {
         get
         {
-            // -- Your Code here --
-            // Hint: Pythagoras Theorem or self dot product
-            throw new System.Exception();
+            float sqrMagnitude = x * x + y * y + z * z;  
+            return sqrMagnitude;
         }
     }
 
@@ -263,9 +275,8 @@ public class IGB283Vector3
     {
         get
         {
-            // -- Your Code here --
-            // Hint: use the square magnitude to reduce code repetition
-            throw new System.NotImplementedException();
+            float magnitude = MathF.Sqrt(SqrMagnitude);
+            return magnitude;
         }
     }
 

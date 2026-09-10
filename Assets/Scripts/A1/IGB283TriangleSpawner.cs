@@ -88,6 +88,8 @@ public class IGB283TriangleSpawner : MonoBehaviour
             objectTransform.position.x = startPoint.x;
             movingRight = true;
         }
+
+        
     }
 
     void CreateObject()
