@@ -38,8 +38,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
         gameObject.AddComponent<MeshRenderer>().material = material;
 
         mesh.Clear();
-        mesh.RecalculateNormals();
-
+        
         objectTransform = new IGB283Transform();
 
         CreateObject();
