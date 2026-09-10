@@ -320,6 +320,12 @@ public class Matrix3x3
         );
     }
 
-
-
+    public static Matrix3x3 Translation(float x, float y)
+    {
+        return new Matrix3x3(
+            1, 0, x,
+            0, 1, y,
+            0, 0, 1
+        );
+    }
 }

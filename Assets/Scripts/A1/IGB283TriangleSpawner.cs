@@ -100,6 +100,9 @@ public class IGB283TriangleSpawner : MonoBehaviour
         // Get rotation from Transform
         Matrix3x3 rotationMatrix =
             objectTransform.GetRotationMatrix();
+        
+        Matrix3x3 translationMatrix = 
+            objectTransform.GetTranslationMatrix();
 
         // Create the four diamonds
         for (int i = 0; i < 4; i++)
@@ -124,7 +127,8 @@ public class IGB283TriangleSpawner : MonoBehaviour
                     rotationMatrix.MultiplyVector3(vertex);
 
                 // Translate the entire object
-                vertex += objectTransform.position;
+                vertex = 
+                    translationMatrix.MultiplyPoint(vertex);
 
                 vertices.Add(vertex);
             }

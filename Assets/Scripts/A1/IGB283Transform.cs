@@ -23,11 +23,10 @@ public class IGB283Transform
         rotation.z += z;
     }
 
-    public void Scale(IGB283Vector3 scaling)
+    public Matrix3x3 GetTranslationMatrix()
     {
-        scale = IGB283Vector3.Scale(scale, scaling);
+        return Matrix3x3.Translation(position.x, position.y);
     }
-
     public Matrix3x3 GetRotationMatrix()
     {
         return Matrix3x3.RotationZ(rotation.z);
