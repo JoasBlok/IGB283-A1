@@ -18,17 +18,18 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
     private bool movingRight = true;
 
+   
     IGB283Vector3[] diamondVertices =
     {
-        new IGB283Vector3(0, 4, 0),
+        new IGB283Vector3(0, 0.4f, 0),
         new IGB283Vector3(0, 0, 0),
-        new IGB283Vector3(1, 2, 0),
-        new IGB283Vector3(2, 4, 0),
-        new IGB283Vector3(1, 6, 0),
-        new IGB283Vector3(0, 8, 0),
-        new IGB283Vector3(-1, 6, 0),
-        new IGB283Vector3(-2, 4, 0),
-        new IGB283Vector3(-1, 2, 0)
+        new IGB283Vector3(0.1f, 0.2f, 0),
+        new IGB283Vector3(0.2f, 0.4f, 0),
+        new IGB283Vector3(0.1f, 0.6f, 0),
+        new IGB283Vector3(0, 0.8f, 0),
+        new IGB283Vector3(-0.1f, 0.6f, 0),
+        new IGB283Vector3(-0.2f, 0.4f, 0),
+        new IGB283Vector3(-0.1f, 0.2f, 0)
     };
 
     void Start()
