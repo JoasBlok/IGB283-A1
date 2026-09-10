@@ -42,7 +42,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
         objectTransform = new IGB283Transform();
 
-        //CreateObject();
+        CreateObject();
     }
 
     void Update()
@@ -56,7 +56,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
         // Rotate using IGB283Transform
         objectTransform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 
-        // Move between the two points using our own Transform
+        // Move between the two points using Transform
         float direction;
 
         if (movingRight)
@@ -97,7 +97,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
         List<IGB283Vector3> vertices = new List<IGB283Vector3>();
         List<int> triangles = new List<int>();
 
-        // Get rotation from our own Transform
+        // Get rotation from Transform
         Matrix3x3 rotationMatrix =
             objectTransform.GetRotationMatrix();
 

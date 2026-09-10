@@ -14,7 +14,7 @@ public class IGB283Vector3
     //     V Normalize*
     //     V Dot*
     //     V Cross*
-    //     X Distance*
+    //     V Distance*
     //     X Lerp
     //     X Scale
     //     X Min
@@ -135,13 +135,12 @@ public class IGB283Vector3
 
 
 
-    // TODO - Normalize, Dot, Cross, Distance, Lerp, Scale, Min, Max, Angle, ConvertFrom, ConvertTo
+    // TODO - Lerp, Scale, Min, Max, Angle 
     #region Static Methods
 
     // The normalized vector in the same direction with length 1
     public static IGB283Vector3 Normalize(IGB283Vector3 value)
     {
-        // -- Your Code here --
         float x = value.x / value.Magnitude;
         float y = value.y / value.Magnitude;
         float z = value.z / value.Magnitude;
@@ -257,7 +256,7 @@ public class IGB283Vector3
 
 
 
-    // TODO - SqrMagnitude, Magnitude
+    
     #region Fields
 
     // The squared length or distance represented by the vector
@@ -288,8 +287,6 @@ public class IGB283Vector3
     #endregion
 
 
-
-    // TODO - *, /, +, -, -
     #region Operators
 
     // Add two vectors
