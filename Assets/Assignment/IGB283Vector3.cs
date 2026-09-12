@@ -191,8 +191,7 @@ public class IGB283Vector3
     // Perform element-wise multiplication of two vectors
     public static IGB283Vector3 Scale(IGB283Vector3 a, IGB283Vector3 b)
     {
-        // -- Your Code here --
-        throw new System.NotImplementedException();
+        return new IGB283Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
     }
 
     // Create a new vector with the smallest elements from two vectors
