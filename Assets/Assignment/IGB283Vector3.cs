@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+[Serializable]
 public class IGB283Vector3
 {
     // Listed below are all the places in this file that are missing functional code.
@@ -16,7 +16,7 @@ public class IGB283Vector3
     //     V Cross*
     //     V Distance*
     //     X Lerp
-    //     X Scale
+    //     V Scale
     //     X Min
     //     X Max
     //     X Angle

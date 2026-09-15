@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class IGB283TriangleSpawner : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
     private IGB283Transform objectTransform;
 
-    private IGB283Vector3 startPoint = new IGB283Vector3(-5, 0, 0);
-    private IGB283Vector3 endPoint = new IGB283Vector3(5, 0, 0);
-
+    [SerializeField] private IGB283Vector3 startPoint = new IGB283Vector3(-5, 0, 0);
+    [SerializeField] private IGB283Vector3 endPoint = new IGB283Vector3(5, 2, 0);
+    
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float rotationSpeed = 90f;
 
@@ -40,8 +41,10 @@ public class IGB283TriangleSpawner : MonoBehaviour
         mesh.Clear();
         
         objectTransform = new IGB283Transform();
-
+      
         CreateObject();
+
+        objectTransform.Translate(startPoint);
     }
 
     void Update()
@@ -103,13 +106,15 @@ public class IGB283TriangleSpawner : MonoBehaviour
         Matrix3x3 translationMatrix = 
             objectTransform.GetTranslationMatrix();
 
+        Matrix3x3 m = translationMatrix *rotationMatrix;
+
         // Create the four diamonds
         for (int i = 0; i < 4; i++)
         {
             float angle = i * 90f;
-
+            
             Matrix3x3 diamondRotation =
-                Matrix3x3.RotationZ(angle);
+                objectTransform.RotationZ(angle);
 
             int vertexOffset = vertices.Count;
 
@@ -121,13 +126,13 @@ public class IGB283TriangleSpawner : MonoBehaviour
                         diamondVertices[j]
                     );
 
-                // Rotate the entire object
-                vertex =
-                    rotationMatrix.MultiplyVector3(vertex);
+                //// Rotate the entire object
+                //vertex =
+                //    rotationMatrix.MultiplyVector3(vertex);
 
                 // Translate the entire object
                 vertex = 
-                    translationMatrix.MultiplyPoint(vertex);
+                    m.MultiplyPoint(vertex);
 
                 vertices.Add(vertex);
             }
