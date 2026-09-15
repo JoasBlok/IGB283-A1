@@ -4,7 +4,8 @@ using UnityEngine;
 public class IGB283TriangleSpawner : MonoBehaviour
 {
     [SerializeField] private Material material;
-    [SerializeField] private Color color = Color.white;
+    [SerializeField] private Color startColor = Color.blue;
+    [SerializeField] private Color endColor = Color.red;
 
     private Mesh mesh;
 
@@ -97,28 +98,31 @@ public class IGB283TriangleSpawner : MonoBehaviour
         {
             objectTransform.position.x = startPoint.x;
             movingRight = true;
-        }       
+        }
+               
+       
     }
+
+
+
 
     void CreateObject()
     {
         List<IGB283Vector3> vertices = new List<IGB283Vector3>();
         List<int> triangles = new List<int>();
 
-        // Get rotation from Transform
         Matrix3x3 rotationMatrix =
             objectTransform.GetRotationMatrix();
-        
-        Matrix3x3 translationMatrix = 
+
+        Matrix3x3 translationMatrix =
             objectTransform.GetTranslationMatrix();
 
-        Matrix3x3 m = translationMatrix *rotationMatrix;
+        Matrix3x3 m = translationMatrix * rotationMatrix;
 
-        // Create the four diamonds
         for (int i = 0; i < 4; i++)
         {
             float angle = i * 90f;
-            
+
             Matrix3x3 diamondRotation =
                 objectTransform.RotationZ(angle);
 
@@ -126,14 +130,10 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
             for (int j = 0; j < diamondVertices.Length; j++)
             {
-                // Rotate the diamond
                 IGB283Vector3 vertex =
-                    diamondRotation.MultiplyVector3(
-                        diamondVertices[j]
-                    );
+                    diamondRotation.MultiplyVector3(diamondVertices[j]);
 
-                // Translate the entire object
-                vertex = 
+                vertex =
                     m.MultiplyPoint(vertex);
 
                 vertices.Add(vertex);
@@ -145,14 +145,24 @@ public class IGB283TriangleSpawner : MonoBehaviour
         mesh.vertices =
             IGB283Vector3.ConvertTo(vertices.ToArray());
 
+        // Calculate how far between the endpoints we are
+        float t = (objectTransform.position.x - startPoint.x) /
+                  (endPoint.x - startPoint.x);
+
+        t = Mathf.Clamp01(t);
+
+        // Interpolate between the two colours
+        Color currentColor = Color.Lerp(startColor, endColor, t);
+
         Color[] colors = new Color[vertices.Count];
 
         for (int i = 0; i < colors.Length; i++)
         {
-            colors[i] = color;
+            colors[i] = currentColor;
         }
 
         mesh.colors = colors;
+
         mesh.triangles = triangles.ToArray();
 
         mesh.RecalculateBounds();

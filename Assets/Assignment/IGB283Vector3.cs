@@ -183,9 +183,15 @@ public class IGB283Vector3
     // Linearly interpolate between two vectors by a given percentage
     public static IGB283Vector3 Lerp(IGB283Vector3 a, IGB283Vector3 b, float t)
     {
-        // -- Your Code here --
-        // Hint: scale the vector going from a to b by t, and add it to a
-        throw new System.NotImplementedException();
+        // Clamp t between 0 and 1 to ensure it stays within bounds
+        t = Mathf.Clamp01(t);
+
+        // Perform linear interpolation on each component
+        return new IGB283Vector3(
+            a.x + (b.x - a.x) * t,
+            a.y + (b.y - a.y) * t,
+            a.z + (b.z - a.z) * t
+        );        
     }
 
     // Perform element-wise multiplication of two vectors
