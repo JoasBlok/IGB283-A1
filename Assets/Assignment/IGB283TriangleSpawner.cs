@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class IGB283TriangleSpawner : MonoBehaviour
 {
@@ -89,9 +88,7 @@ public class IGB283TriangleSpawner : MonoBehaviour
         {
             objectTransform.position.x = startPoint.x;
             movingRight = true;
-        }
-
-        
+        }       
     }
 
     void CreateObject()
@@ -125,10 +122,6 @@ public class IGB283TriangleSpawner : MonoBehaviour
                     diamondRotation.MultiplyVector3(
                         diamondVertices[j]
                     );
-
-                //// Rotate the entire object
-                //vertex =
-                //    rotationMatrix.MultiplyVector3(vertex);
 
                 // Translate the entire object
                 vertex = 
