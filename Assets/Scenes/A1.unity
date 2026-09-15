@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5187bfc116397a42ba84c98ced097d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: A1::IGB283TriangleSpawner
-  material: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  color: {r: 0.039649326, g: 0.15662813, b: 0.9339623, a: 1}
   startPoint:
     x: -5
     y: -2
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97534454299c87a44a5aea2f4d836120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: A1::Square
-  material: {fileID: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   startPoint:
     x: 5
     y: -2
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97534454299c87a44a5aea2f4d836120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: A1::Square
-  material: {fileID: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   startPoint:
     x: -5
     y: -2
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97534454299c87a44a5aea2f4d836120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: A1::Square
-  material: {fileID: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   startPoint:
     x: -5
     y: 2
