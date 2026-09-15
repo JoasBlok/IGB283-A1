@@ -56,11 +56,11 @@ public class IGB283Transform
         );
     }
 
-    public static Matrix3x3 Scale(float x, float y)
+    public Matrix3x3 Scale(float x, float y)
     {
         return new Matrix3x3(
             x, 0, 0,
-            y, 0, 0,
+            0, y, 0,
             0, 0, 1
             );
     }

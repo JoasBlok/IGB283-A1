@@ -13,7 +13,10 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
     [SerializeField] private IGB283Vector3 startPoint = new IGB283Vector3(-5, 0, 0);
     [SerializeField] private IGB283Vector3 endPoint = new IGB283Vector3(5, 2, 0);
-    
+
+    [SerializeField] private float minScale = 0.5f;
+    [SerializeField] private float maxScale = 1.5f;
+
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float rotationSpeed = 90f;
 
@@ -112,12 +115,24 @@ public class IGB283TriangleSpawner : MonoBehaviour
         List<int> triangles = new List<int>();
 
         Matrix3x3 rotationMatrix =
-            objectTransform.GetRotationMatrix();
+    objectTransform.GetRotationMatrix();
 
         Matrix3x3 translationMatrix =
             objectTransform.GetTranslationMatrix();
 
-        Matrix3x3 m = translationMatrix * rotationMatrix;
+        float t = (objectTransform.position.x - startPoint.x) /
+                  (endPoint.x - startPoint.x);
+
+        t = Mathf.Clamp01(t);
+
+        float currentScale =
+            Mathf.Lerp(minScale, maxScale, t);
+
+        Matrix3x3 scaleMatrix =
+            objectTransform.Scale(currentScale, currentScale);
+
+        Matrix3x3 m =
+            translationMatrix * rotationMatrix * scaleMatrix;
 
         for (int i = 0; i < 4; i++)
         {
@@ -144,12 +159,6 @@ public class IGB283TriangleSpawner : MonoBehaviour
 
         mesh.vertices =
             IGB283Vector3.ConvertTo(vertices.ToArray());
-
-        // Calculate how far between the endpoints we are
-        float t = (objectTransform.position.x - startPoint.x) /
-                  (endPoint.x - startPoint.x);
-
-        t = Mathf.Clamp01(t);
 
         // Interpolate between the two colours
         Color currentColor = Color.Lerp(startColor, endColor, t);
